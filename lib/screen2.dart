@@ -8,11 +8,14 @@ import 'package:glob/glob.dart';
 
 //apply this class on home: attribute at MaterialApp()
 class MyFileList extends StatefulWidget{
-  var date;
+  // var date;
 
-  MyFileList(var date){
-    date = date;
-  }
+  // MyFileList(var date){
+  //   date = date;
+  // }
+  //
+  final String date;
+  MyFileList({required this.date});
 
   @override
   State<StatefulWidget> createState() {
@@ -24,8 +27,9 @@ class _MyFileList extends State<MyFileList>{
 
   var date;
  _MyFileList(var date){
-   date = date;
+   this.date = date;
  }
+  // _MyFileList({Key key, @required this.date}) : super(key: key);
 
 
   var files;
@@ -54,6 +58,7 @@ class _MyFileList extends State<MyFileList>{
 
     // files = files.where((item)=> item.toString().contains('$date')).toList();
 
+    var date = this.date.toString();
     files = files.where((item)=> item.toString().contains('$date')).toList();
     // print(files[0].toString().contains('20190929_'));
     // files = files.where((item)=> item.startsWith('20190929_')).toList();
@@ -72,6 +77,10 @@ class _MyFileList extends State<MyFileList>{
   @override
   Widget build(BuildContext context) {
 
+    final arguments = (ModalRoute.of(context)?.settings.arguments) ?? <String, dynamic>{} as Map;
+    var bb = arguments.toString().split(' ')[1].substring(0, 8);
+    setState((){this.date = bb;});
+    print('arg: $bb');
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             onPressed: (){Navigator.pushNamed(context, '/home');}),

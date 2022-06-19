@@ -6,6 +6,7 @@ import 'package:auto_diary/ImageCollector.dart';
 import 'dart:io';
 import 'package:flutter_file_manager/flutter_file_manager.dart';
 
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,6 +18,8 @@ class _HomePageState extends State<HomePage> {
   // var imageCollector = new ImageCollector();
   var files;
   var dates;
+
+
 
   void initState() {
     getFiles(); //call getFiles() function on initial state.
@@ -34,7 +37,8 @@ class _HomePageState extends State<HomePage> {
 
         child: Text("$text"),
         onPressed: () {
-          Navigator.pushNamed(context, '/second', arguments : {'date': text});
+          Navigator.pushNamed(context, '/second', arguments : {'date' : text});
+          // Navigator.push(context, Material)
         },
       ),
     );

@@ -14,14 +14,32 @@ import 'package:auto_diary/HomePage.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-        home: MyFileList("202210"), //call MyFile List
+        home: MyFileList(date:"202210"), //call MyFile List
         initialRoute: '/home',
         routes: {
           '/home' : (context) => HomePage(),
-          '/second' : (context) => MyFileList('202210'),
+          '/second' : (context) => MyFileList(date:'202210'),
+
+        },
+        onGenerateRoute: (routeSettings){
+          if (routeSettings.name == '/second'){
+
+            final args = routeSettings.arguments;
+            var aa = args.toString();
+            print('onGenerate $aa');
+            return MaterialPageRoute(
+              builder: (context){
+
+                return MyFileList(date: args.toString());
+              }
+            );
+          }
         }
     );
   }
