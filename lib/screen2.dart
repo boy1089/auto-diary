@@ -8,15 +8,30 @@ import 'package:glob/glob.dart';
 
 //apply this class on home: attribute at MaterialApp()
 class MyFileList extends StatefulWidget{
+  var date;
+
+  MyFileList(var date){
+    date = date;
+  }
+
   @override
   State<StatefulWidget> createState() {
-    return _MyFileList();
+    return _MyFileList(date);
   }
 }
 
 class _MyFileList extends State<MyFileList>{
+
+  var date;
+ _MyFileList(var date){
+   date = date;
+ }
+
+
   var files;
   var permissionGranted = false;
+  // final date;
+
   Future _getStoragePermission() async {
     if (await Permission.storage.request().isGranted) {
       setState(() {
@@ -37,11 +52,13 @@ class _MyFileList extends State<MyFileList>{
       //remove this if your are grabbing folder list
     );
 
-    files = files.where((item)=> item.toString().contains('20191006_')).toList();
+    // files = files.where((item)=> item.toString().contains('$date')).toList();
+
+    files = files.where((item)=> item.toString().contains('$date')).toList();
     // print(files[0].toString().contains('20190929_'));
     // files = files.where((item)=> item.startsWith('20190929_')).toList();
 
-    print(files);
+    print('$date, files : $files');
     setState(() {}); //update the UI
   }
 
@@ -54,6 +71,7 @@ class _MyFileList extends State<MyFileList>{
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             onPressed: (){Navigator.pushNamed(context, '/home');}),

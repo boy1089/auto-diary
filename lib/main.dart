@@ -17,12 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      home: MyFileList(), //call MyFile List
-
-      routes: {
-        '/home' : (context) => HomePage(),
-        '/second' : (context) => MyFileList(),
-      }
+        home: MyFileList("202210"), //call MyFile List
+        initialRoute: '/home',
+        routes: {
+          '/home' : (context) => HomePage(),
+          '/second' : (context) => MyFileList('202210'),
+        }
     );
   }
 }
