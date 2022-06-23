@@ -6,7 +6,6 @@ import 'package:auto_diary/ImageCollector.dart';
 import 'dart:io';
 import 'package:flutter_file_manager/flutter_file_manager.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,8 +18,6 @@ class _HomePageState extends State<HomePage> {
   var files;
   var dates;
 
-
-
   void initState() {
     getFiles(); //call getFiles() function on initial state.
     // getDateFromFiles();
@@ -28,16 +25,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget Button(String text) {
-    return Expanded(
-      flex: 2,
+    var date = text.substring(4,8);
+    return Container(
+      // flex: 2,
+      width : 50,
+      height : 50,
+      decoration : BoxDecoration(
+        color: Colors.blue,
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      ),
       child: FlatButton(
-        color: Colors.red,
-        padding: EdgeInsets.all(10),
-        height:20,
-
-        child: Text("$text"),
+        // color: Colors.red,
+        padding: EdgeInsets.all(5),
+        height: 20,
+        child: Text("$date"),
         onPressed: () {
-          Navigator.pushNamed(context, '/second', arguments : {'date' : text});
+          Navigator.pushNamed(context, '/second', arguments: {'date': text});
           // Navigator.push(context, Material)
         },
       ),
@@ -102,6 +106,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.end,
                 ),
+                SizedBox(height: 5),
                 Row(
                   children: [
                     Button(dates[5]),
@@ -114,8 +119,6 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.end,
                 )
-
-
               ]),
             ),
       floatingActionButton: FloatingActionButton(onPressed: () {
